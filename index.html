@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Management System</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div id="loginForm" class="login-container">
+        <h2>Student System Login</h2>
+        <div class="form-group">
+            <label for="loginEmail">Email:</label>
+            <input type="email" id="loginEmail" placeholder="your@email.com" required>
+        </div>
+        <div class="form-group">
+            <label for="loginPassword">Password (optional):</label>
+            <div class="password-container">
+                <input type="password" id="loginPassword" placeholder="••••••••">
+                <span class="toggle-password" onclick="togglePassword()">👁️</span>
+            </div>
+        </div>
+        <button id="loginBtn">Login</button>
+        <p class="demo-note">Demo mode: Any email will work</p>
+    </div>
+
+    <div id="mainContent" style="display: none;">
+        <div class="container">
+            <button id="darkModeToggle">Toggle Dark Mode</button>
+            <button id="logoutBtn" style="float: right;">Logout</button>
+            <div id="welcomeMessage" class="welcome-message"></div>
+            
+            <h1>Student Management System</h1>
+            
+            <div class="form-container">
+                <h2>Add New Student</h2>
+                <form id="studentForm">
+                    <div class="form-group">
+                        <label for="studentId">Student ID:</label>
+                        <input type="text" id="studentId" required placeholder="ST-001">
+                    </div>
+                    <div class="form-group">
+                        <label for="studentName">Full Name:</label>
+                        <input type="text" id="studentName" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="studentAge">Age:</label>
+                        <input type="number" id="studentAge" required min="5" max="25">
+                    </div>
+                    <div class="form-group">
+                        <label for="studentGrade">Grade:</label>
+                        <input type="text" id="studentGrade" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="studentEmail">Email:</label>
+                        <input type="email" id="studentEmail" required>
+                    </div>
+                    <div class="button-group">
+                        <button type="submit" id="addBtn">Add Student</button>
+                        <button type="button" id="updateBtn" style="display: none;">Update Student</button>
+                        <button type="button" id="cancelBtn" style="display: none;">Cancel</button>
+                    </div>
+                </form>
+            </div>
+
+            <div class="search-container">
+                <input type="text" id="searchInput" placeholder="Search students...">
+                <button id="searchBtn">Search</button>
+                <button id="exportBtn" class="export-btn">Export to CSV</button>
+            </div>
+
+            <div class="table-container">
+                <h2>Student Records</h2>
+                <table id="studentTable">
+                    <thead>
+                        <tr>
+                            <th onclick="sortStudents('id')">ID ▲▼</th>
+                            <th onclick="sortStudents('name')">Name ▲▼</th>
+                            <th onclick="sortStudents('age')">Age ▲▼</th>
+                            <th onclick="sortStudents('grade')">Grade ▲▼</th>
+                            <th onclick="sortStudents('email')">Email ▲▼</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="studentTableBody">
+                        <!-- Student records will be inserted here by JavaScript -->
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="chart-container">
+                <h2>Grade Distribution</h2>
+                <canvas id="gradeChart"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
